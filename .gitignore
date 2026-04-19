@@ -1,4 +1,5 @@
 .*
 *.dot
-*.spdx.json
+*.png
 *.svg
+*.json
