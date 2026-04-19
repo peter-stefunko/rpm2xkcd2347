@@ -8,6 +8,40 @@ This is a project developed as part of a bachelor’s thesis.
 
 Author: Peter Štefunko
 
+## Usage
+
+### Setup
+
+```bash
+uv sync
+```
+
+### Run
+
+```bash
+uv run rpm2xkcd2347 <sbom.spdx.json>
+```
+
+### Options
+
+```
+positional arguments:
+  sbom.spdx.json        SPDX 2.3 JSON SBOM file
+
+options:
+  -h, --help            show this help message and exit
+  --output, -o FILE     output .dot file path (default: <sbom-stem>.dot)
+  --no-highlight-cycles do not color cycle participants in the output graph
+```
+
+### Convert output to an image
+
+The output `.dot` file can be converted to an image using [Graphviz](https://graphviz.org/):
+
+```bash
+dot -Tsvg <output.dot> -o <output.svg>
+```
+
 ## License
 
 This project is licensed under the BSD 3-Clause License.  
