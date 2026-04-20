@@ -8,6 +8,18 @@ This is a project developed as part of a bachelor’s thesis.
 
 Author: Peter Štefunko
 
+## Obtaining an SBOM
+
+Any SPDX 2.3 JSON SBOM can be used as input. One way to generate one is with [syft](https://github.com/anchore/syft).
+
+For example, to generate an SBOM from Red Hat Universal Base Image (UBI) 9.7:
+
+```bash
+syft registry.access.redhat.com/ubi9:9.7 -o spdx-json@2.3 > ubi9_7.spdx.json
+```
+
+An example SBOM is also available in the `examples/` directory.
+
 ## Usage
 
 ### Setup
