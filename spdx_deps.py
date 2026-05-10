@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 
+import argparse
 import json
 import sys
 from collections import defaultdict
+from enum import Enum
 from pathlib import Path
 from typing import Any, TextIO
 
 
-def reverse_graph(graph: dict[str, list[str]]) -> dict[str, list[str]]:
+class State(Enum):
+    WHITE = 0
+    GRAY = 1
+    BLACK = 2
+
+
+def reverse_graph(
+    graph: dict[str, list[str]]
+) -> dict[str, list[str]]:
     rev: dict[str, list[str]] = defaultdict(list)
 
     for pkg, dependencies in graph.items():
@@ -19,10 +29,12 @@ def reverse_graph(graph: dict[str, list[str]]) -> dict[str, list[str]]:
     return rev
 
 
-def push_dfs(graph: dict[str, list[str]],
-             color: dict[str, str],
-             stack: list[str],
-             pkg: str) -> None:
+def push_dfs(
+    graph: dict[str, list[str]],
+    color: dict[str, str],
+    stack: list[str],
+    pkg: str,
+) -> None:
     color[pkg] = "gray"
 
     for dep in graph[pkg]:
@@ -33,10 +45,12 @@ def push_dfs(graph: dict[str, list[str]],
     stack.append(pkg)
 
 
-def label_dfs(rev_graph: dict[str, list[str]],
-              color: dict[str, str],
-              scc_pkgs: list[str],
-              pkg: str) -> None:
+def label_dfs(
+    rev_graph: dict[str, list[str]],
+    color: dict[str, str],
+    scc_pkgs: list[str],
+    pkg: str,
+) -> None:
     color[pkg] = "gray"
     scc_pkgs.append(pkg)
 
@@ -47,7 +61,9 @@ def label_dfs(rev_graph: dict[str, list[str]],
     color[pkg] = "black"
 
 
-def get_sccs_kosaraju(graph: dict[str, list[str]]) -> list[list[str]]:
+def get_sccs_kosaraju(
+    graph: dict[str, list[str]]
+) -> list[list[str]]:
     rev_graph = reverse_graph(graph)
     packages = list(graph.keys())
     color: dict[str, str] = {pkg: "white" for pkg in packages}
@@ -71,7 +87,9 @@ def get_sccs_kosaraju(graph: dict[str, list[str]]) -> list[list[str]]:
     return sccs
 
 
-def get_cyclic_sccs(graph: dict[str, list[str]]) -> list[list[str]]:
+def get_cyclic_sccs(
+    graph: dict[str, list[str]],
+) -> list[list[str]]:
     sccs = get_sccs_kosaraju(graph)
     cycles: list[list[str]] = []
 
@@ -86,7 +104,9 @@ def get_cyclic_sccs(graph: dict[str, list[str]]) -> list[list[str]]:
     return cycles
 
 
-def get_packages(sbom: dict[str, Any]) -> dict[str, str]:
+def get_packages(
+    sbom: dict[str, Any],
+) -> dict[str, str]:
     packages = {}
 
     for pkg in sbom.get("packages", []):
@@ -98,8 +118,10 @@ def get_packages(sbom: dict[str, Any]) -> dict[str, str]:
     return packages
 
 
-def get_package_spdx_ids(pkg_name: str,
-                         packages: dict[str, str]) -> list[str]:
+def get_package_spdx_ids(
+    pkg_name: str,
+    packages: dict[str, str],
+) -> list[str]:
     ids = []
 
     for spdx_id, name in packages.items():
@@ -109,8 +131,10 @@ def get_package_spdx_ids(pkg_name: str,
     return ids
 
 
-def get_dependencies(sbom: dict[str, Any],
-                     packages: dict[str, str]) -> dict[str, list[str]]:
+def get_dependencies(
+    sbom: dict[str, Any],
+    packages: dict[str, str],
+) -> dict[str, list[str]]:
     dependencies = defaultdict(list)
 
     for rs in sbom.get("relationships", []):
@@ -121,14 +145,16 @@ def get_dependencies(sbom: dict[str, Any],
         dependent = rs.get("relatedSpdxElement")
         dependencies[dependent].append(dependency)
 
-    for spdx_id in packages:
-        if spdx_id not in dependencies:
-            dependencies[spdx_id] = []
+    for pkg in packages:
+        if pkg not in dependencies:
+            dependencies[pkg] = []
 
     return dependencies
 
 
-def get_duplicates(packages: dict[str, str]) -> dict[str, set[str]]:
+def get_duplicates(
+    packages: dict[str, str],
+) -> dict[str, set[str]]:
     duplicates: dict[str, set[str]] = defaultdict(set)
 
     for spdx_id, name in packages.items():
@@ -141,8 +167,9 @@ def get_duplicates(packages: dict[str, str]) -> dict[str, set[str]]:
     return duplicates
 
 
-def get_dependency_frequencies(dependencies: dict[str, list[str]]) \
-                               -> dict[str, tuple[int, int]]:
+def get_dependency_frequencies(
+    dependencies: dict[str, list[str]],
+) -> dict[str, tuple[int, int]]:
     frequencies: dict[str, tuple[int, int]] = defaultdict(lambda: (0, 0))
 
     for deps in dependencies.values():
@@ -150,15 +177,17 @@ def get_dependency_frequencies(dependencies: dict[str, list[str]]) \
             dependent, _ = frequencies[dep_id]
             frequencies[dep_id] = (dependent + 1, len(dependencies[dep_id]))
 
-    for spdx_id, deps in dependencies.items():
-        if spdx_id not in frequencies:
-            frequencies[spdx_id] = (0, len(deps))
+    for pkg, deps in dependencies.items():
+        if pkg not in frequencies:
+            frequencies[pkg] = (0, len(deps))
 
     return frequencies
 
 
-def print_dependencies(dependencies: dict[str, list[str]],
-                       packages: dict[str, str]) -> None:
+def print_dependencies(
+    dependencies: dict[str, list[str]],
+    packages: dict[str, str],
+) -> None:
     print("\nDependencies:")
 
     for spdx_id, name in packages.items():
@@ -166,15 +195,19 @@ def print_dependencies(dependencies: dict[str, list[str]],
         print(f"{name}: {', '.join(dep_names)}")
 
 
-def print_duplicates(duplicates: dict[str, set[str]]) -> None:
+def print_duplicates(
+    duplicates: dict[str, set[str]],
+) -> None:
     print("\nDuplicate package names:")
 
     for name, spdx_ids in duplicates.items():
         print(f"{name}: {', '.join(sorted(spdx_ids))}")
 
 
-def print_frequencies(frequencies: dict[str, tuple[int, int]],
-                      packages: dict[str, str]) -> None:
+def print_frequencies(
+    frequencies: dict[str, tuple[int, int]],
+    packages: dict[str, str],
+) -> None:
     print("\nDependency frequencies (package: dependants - arrows inward, "
           "dependencies - arrows outward):")
 
@@ -184,8 +217,10 @@ def print_frequencies(frequencies: dict[str, tuple[int, int]],
         print(f"{packages[spdx_id]}: {dependant}, {dependencies}")
 
 
-def print_cycles(cycles: list[list[str]],
-                 packages: dict[str, str]) -> None:
+def print_cycles(
+    cycles: list[list[str]],
+    packages: dict[str, str],
+) -> None:
     print("\nCycles:")
 
     for i, group in enumerate(cycles, start=1):
@@ -193,12 +228,14 @@ def print_cycles(cycles: list[list[str]],
         print(f"{i}: {', '.join(cycle_pkgs)}")
 
 
-def draw_package(spdx_id: str,
-                 dependencies: dict[str, list[str]],
-                 packages: dict[str, str],
-                 to_highlight: list[str],
-                 visited: set[str],
-                 f: TextIO) -> None:
+def draw_package(
+    spdx_id: str,
+    dependencies: dict[str, list[str]],
+    packages: dict[str, str],
+    to_highlight: list[str],
+    visited: set[str],
+    f: TextIO,
+) -> None:
     visited.add(spdx_id)
 
     if spdx_id in to_highlight:
@@ -219,11 +256,13 @@ def draw_package(spdx_id: str,
                          f)
 
 
-def draw_dependencies_package(dependencies: dict[str, list[str]],
-                              packages: dict[str, str],
-                              pkg_spdx_id: str,
-                              to_highlight: list[str],
-                              filename: str) -> None:
+def draw_dependencies_package(
+    dependencies: dict[str, list[str]],
+    packages: dict[str, str],
+    pkg_spdx_id: str,
+    to_highlight: list[str],
+    filename: str,
+) -> None:
     with open(filename, "w", encoding="utf-8") as f:
         f.write("digraph Dependencies {\n")
         draw_package(pkg_spdx_id, dependencies, packages, to_highlight, set(),
@@ -231,9 +270,11 @@ def draw_dependencies_package(dependencies: dict[str, list[str]],
         f.write("}\n")
 
 
-def draw_dependencies_all(dependencies: dict[str, list[str]],
-                          packages: dict[str, str],
-                          filename: str) -> None:
+def draw_dependencies_all(
+    dependencies: dict[str, list[str]],
+    packages: dict[str, str],
+    filename: str,
+) -> None:
     with open(filename, "w", encoding="utf-8") as f:
         f.write("digraph Dependencies {\n")
 
@@ -245,21 +286,27 @@ def draw_dependencies_all(dependencies: dict[str, list[str]],
         f.write("}\n")
 
 
-def draw_cycles(dependencies: dict[str, list[str]],
-                packages: dict[str, str],
-                cycles: list[list[str]]) -> None:
-    for i, c in enumerate(cycles):
-        pkg_spdx_id = c[0]
+def draw_cycles(
+    dependencies: dict[str, list[str]],
+    packages: dict[str, str],
+    cycles: list[list[str]],
+) -> None:
+    for i, cycle in enumerate(cycles):
+        pkg_spdx_id = cycle[0]
         pkg_name = packages[pkg_spdx_id]
-        draw_dependencies_package(dependencies, packages, pkg_spdx_id, c,
+        draw_dependencies_package(dependencies, packages, pkg_spdx_id, cycle,
                                   f'cycle{i + 1}-{pkg_name}.dot')
+
+
+def load_sbom(path: str) -> Any:
+    with open(path, "r", encoding="utf-8") as s:
+        return json.load(s)
 
 
 def main(argv: list[str]) -> None:
     sbom_path = argv[1]
 
-    with open(sbom_path, "r", encoding="utf-8") as s:
-        sbom = json.load(s)
+    sbom = load_sbom(sbom_path)
 
     packages = get_packages(sbom)
     dependencies = get_dependencies(sbom, packages)
