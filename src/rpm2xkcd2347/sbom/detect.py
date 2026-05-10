@@ -19,4 +19,4 @@ def detect(path: str | Path) -> SbomParser:
     if spdx_version == "SPDX-2.3":
         return Spdx23Parser()
 
-    raise ValueError(f"Unsupported SBOM format: {spdx_version!r}. Only SPDX 2.3 is supported.")
+    raise ValueError(f"Unsupported SBOM format: {spdx_version!r}.")
