@@ -1,0 +1,141 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "registry.access.redhat.com/ubi9 (GitHub packages only - no dependencies)",
+  "documentNamespace": "https://anchore.com/syft/image/registry.access.redhat.com/ubi9-da18917a-0c8a-42b0-becb-204281a86cc2",
+  "creationInfo": {
+    "licenseListVersion": "3.27",
+    "creators": [
+      "Organization: Anchore, Inc",
+      "Tool: syft-[not provided]"
+    ],
+    "created": "2026-01-18T18:08:27Z"
+  },
+  "packages": [
+    {
+      "name": "openssl",
+      "SPDXID": "SPDXRef-Package-rpm-openssl-5ab9181947e10c8b",
+      "versionInfo": "1:3.5.1-4.el9_7",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "f474160c3bd3d10a216b50ac2b541845ce47617b"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:openssl:openssl:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:openssl:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/openssl@3.5.1-4.el9_7?arch=x86_64&distro=rhel-9.7&epoch=1&upstream=openssl-3.5.1-4.el9_7.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "systemd",
+      "SPDXID": "SPDXRef-Package-rpm-systemd-2209a50e3cb294b4",
+      "versionInfo": "252-55.el9_7.7",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "77187e8879ef4039492889cc0bf2841cee64da39"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-LGPLv2--and-MIT-and-GPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:systemd:systemd:252-55.el9_7.7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:systemd:252-55.el9_7.7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/systemd@252-55.el9_7.7?arch=x86_64&distro=rhel-9.7&upstream=systemd-252-55.el9_7.7.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "zlib",
+      "SPDXID": "SPDXRef-Package-rpm-zlib-3b95a370d9cbeb72",
+      "versionInfo": "1.2.11-40.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "289263adabab82f02dd7c0853b4956fdedbd2451"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-zlib-and-Boost",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:zlib:1.2.11-40.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:zlib:zlib:1.2.11-40.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/zlib@1.2.11-40.el9?arch=x86_64&distro=rhel-9.7&upstream=zlib-1.2.11-40.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "registry.access.redhat.com/ubi9",
+      "SPDXID": "SPDXRef-DocumentRoot-Image-registry.access.redhat.com-ubi9",
+      "versionInfo": "9.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5b106a219b26390799315f098cc9bb9fb3e7e72334596242e25ea76ce371c645"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:oci/registry.access.redhat.com%2Fubi9@sha256%3A5b106a219b26390799315f098cc9bb9fb3e7e72334596242e25ea76ce371c645?arch=amd64&tag=9.7"
+        }
+      ],
+      "primaryPackagePurpose": "CONTAINER"
+    }
+  ]
+}
