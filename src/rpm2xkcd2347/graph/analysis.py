@@ -7,7 +7,24 @@ from .model import DependencyGraph
 @dataclass
 class AnalysisResult:
     cycles: list[list[str]]                  # list of cyclic SCCs (spdx_ids)
-    frequencies: dict[str, tuple[int, int]]  # spdx_id → (dependants, dependencies)
+    frequencies: dict[str, tuple[int, int]]  # spdx_id -> (dependants, dependencies)
+    fas: list[tuple[str, str]]               # feedback arc set: edges to remove to break all cycles
+    dag: DependencyGraph                     # graph with FAS edges removed (directed acyclic graph)
+
+
+def analyze(graph: DependencyGraph) -> AnalysisResult:
+    """Analyze a dependency graph and return cycles and dependency frequencies."""
+    sccs = _kosaraju(graph.dependencies)
+    cycles = _cyclic_sccs(graph.dependencies, sccs)
+    frequencies = _frequencies(graph.dependencies)
+    fas = _greedy_fas(graph.dependencies)
+    fas_set = set(fas)
+    dag_deps = {
+        spdx_id: [d for d in deps if (spdx_id, d) not in fas_set]
+        for spdx_id, deps in graph.dependencies.items()
+    }
+    dag = DependencyGraph(packages=graph.packages, dependencies=dag_deps)
+    return AnalysisResult(cycles=cycles, frequencies=frequencies, fas=fas, dag=dag)
 
 
 def _reverse(dependencies: dict[str, list[str]]) -> dict[str, list[str]]:
@@ -22,49 +39,47 @@ def _reverse(dependencies: dict[str, list[str]]) -> dict[str, list[str]]:
 
 def _push_dfs(
     graph: dict[str, list[str]],
-    color: dict[str, str],
+    visited: set[str],
     stack: list[str],
     pkg: str,
 ) -> None:
-    color[pkg] = "gray"
+    visited.add(pkg)
     for dep in graph[pkg]:
-        if color.get(dep) == "white":
-            _push_dfs(graph, color, stack, dep)
-    color[pkg] = "black"
+        if dep not in visited:
+            _push_dfs(graph, visited, stack, dep)
     stack.append(pkg)
 
 
 def _label_dfs(
     rev_graph: dict[str, list[str]],
-    color: dict[str, str],
+    visited: set[str],
     component: list[str],
     pkg: str,
 ) -> None:
-    color[pkg] = "gray"
+    visited.add(pkg)
     component.append(pkg)
     for dep in rev_graph.get(pkg, []):
-        if color.get(dep) == "white":
-            _label_dfs(rev_graph, color, component, dep)
-    color[pkg] = "black"
+        if dep not in visited:
+            _label_dfs(rev_graph, visited, component, dep)
 
 
 def _kosaraju(dependencies: dict[str, list[str]]) -> list[list[str]]:
     rev = _reverse(dependencies)
     packages = list(dependencies.keys())
-    color = {pkg: "white" for pkg in packages}
+    visited: set[str] = set()
     stack: list[str] = []
 
     for pkg in packages:
-        if color[pkg] == "white":
-            _push_dfs(dependencies, color, stack, pkg)
+        if pkg not in visited:
+            _push_dfs(dependencies, visited, stack, pkg)
 
-    color = {pkg: "white" for pkg in packages}
+    visited = set()
     sccs: list[list[str]] = []
     while stack:
         pkg = stack.pop()
-        if color[pkg] == "white":
+        if pkg not in visited:
             component: list[str] = []
-            _label_dfs(rev, color, component, pkg)
+            _label_dfs(rev, visited, component, pkg)
             sccs.append(component)
 
     return sccs
@@ -96,8 +111,48 @@ def _frequencies(dependencies: dict[str, list[str]]) -> dict[str, tuple[int, int
     }
 
 
-def analyze(graph: DependencyGraph) -> AnalysisResult:
-    sccs = _kosaraju(graph.dependencies)
-    cycles = _cyclic_sccs(graph.dependencies, sccs)
-    frequencies = _frequencies(graph.dependencies)
-    return AnalysisResult(cycles=cycles, frequencies=frequencies)
+def _greedy_fas(dependencies: dict[str, list[str]]) -> list[tuple[str, str]]:
+    rev = _reverse(dependencies)
+    nodes = list(dependencies.keys())
+    outdeg = {u: len(dependencies.get(u, [])) for u in nodes}
+    indeg = {u: len(rev.get(u, [])) for u in nodes}
+
+    s1: list[str] = []
+    s2: list[str] = []
+    remaining = set(nodes)
+
+    def remove(u: str) -> None:
+        remaining.discard(u)
+        for v in dependencies.get(u, []):
+            if v in remaining:
+                indeg[v] -= 1
+        for w in rev.get(u, []):
+            if w in remaining:
+                outdeg[w] -= 1
+
+    while remaining:
+        while True:
+            sink = next((u for u in remaining if outdeg[u] == 0), None)
+            if sink is None:
+                break
+            s2.insert(0, sink)
+            remove(sink)
+        while True:
+            source = next((u for u in remaining if indeg[u] == 0), None)
+            if source is None:
+                break
+            s1.append(source)
+            remove(source)
+        if not remaining:
+            break
+        u = max(remaining, key=lambda u: outdeg[u] - indeg[u])
+        s1.append(u)
+        remove(u)
+
+    rank = {node: i for i, node in enumerate(s1 + s2)}
+    return [
+        (u, v)
+        for u, deps in dependencies.items()
+        for v in deps
+        if rank[u] > rank[v]
+    ]
