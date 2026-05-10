@@ -3,3 +3,4 @@
 *.png
 *.svg
 __pycache__/
+out/
