@@ -117,7 +117,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--metrics",
-        choices=["none", "criticality", "criticality-go"],
+        choices=["none", "criticality-go"],
         default="none",
         help=(
             "metrics provider: 'criticality' resolves each package's upstream "
