@@ -31,6 +31,7 @@ class DotRenderer(Renderer):
         self._write_cycle_graphs(graph, analysis.cycles, colors, Path(options.output_path).parent)
         if analysis.fas:
             base = Path(options.output_path)
+            self._write_dag(graph, set(analysis.fas), colors, str(base.parent / (base.stem + '.fas.dot')))
             self._write_full_graph(analysis.dag, colors, str(base.parent / (base.stem + '.dag.dot')))
 
     def _write_node(
@@ -81,3 +82,23 @@ class DotRenderer(Renderer):
                 f.write("digraph Dependencies {\n")
                 self._write_node(f, root, graph, node_colors, visited)
                 f.write("}\n")
+
+    def _write_dag(
+        self,
+        graph: DependencyGraph,
+        fas: set[tuple[str, str]],
+        node_colors: dict[str, str],
+        path: str,
+    ) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("digraph Dependencies {\n")
+            for spdx_id, pkg in graph.packages.items():
+                color = node_colors.get(spdx_id, "white")
+                f.write(f'"{spdx_id}" [label="{pkg.name}" style=filled fillcolor="{color}"]\n')
+            for spdx_id in graph.packages:
+                for dep_id in graph.dependencies[spdx_id]:
+                    if (spdx_id, dep_id) in fas:
+                        f.write(f'"{spdx_id}" -> "{dep_id}" [style=dashed color=red]\n')
+                    else:
+                        f.write(f'"{spdx_id}" -> "{dep_id}"\n')
+            f.write("}\n")
