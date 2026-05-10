@@ -1,9 +1,14 @@
-from ..sbom.spdx import ParsedSbom
+from ..sbom.model import ParsedSbom
 from .model import DependencyGraph
 
 
 def build(parsed: ParsedSbom) -> DependencyGraph:
-    # Ensure every package has an entry in dependencies, even if empty
+    """Build a DependencyGraph from a parsed SBOM.
+
+    Ensures every package has an entry in the dependencies dict, so callers
+    can always look up a package's dependencies without checking for key
+    existence first.
+    """
     dependencies = dict(parsed.dependencies)
     for spdx_id in parsed.packages:
         if spdx_id not in dependencies:
