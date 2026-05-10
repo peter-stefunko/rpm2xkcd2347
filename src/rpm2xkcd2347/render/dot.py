@@ -7,18 +7,8 @@ from ..metrics.model import PackageMetrics
 from .base import Renderer
 from .model import RenderOptions
 
-class DotRenderer(Renderer):
-    def _node_colors(self, cycles: list[list[str]]) -> dict[str, str]:
-        palette = [
-            "cyan", "coral", "lightgreen", "gold", "orchid",
-            "salmon", "turquoise", "tomato", "deepskyblue", "khaki",
-        ]
-        colors: dict[str, str] = {}
-        for i, component in enumerate(cycles):
-            for spdx_id in component:
-                colors[spdx_id] = palette[i % len(palette)]
-        return colors
 
+class DotRenderer(Renderer):
     def render(
         self,
         graph: DependencyGraph,
@@ -33,6 +23,17 @@ class DotRenderer(Renderer):
             base = Path(options.output_path)
             self._write_dag(graph, set(analysis.fas), colors, str(base.parent / (base.stem + '.fas.dot')))
             self._write_full_graph(analysis.dag, colors, str(base.parent / (base.stem + '.dag.dot')))
+
+    def _node_colors(self, cycles: list[list[str]]) -> dict[str, str]:
+        palette = [
+            "cyan", "coral", "lightgreen", "gold", "orchid",
+            "salmon", "turquoise", "tomato", "deepskyblue", "khaki",
+        ]
+        colors: dict[str, str] = {}
+        for i, component in enumerate(cycles):
+            for spdx_id in component:
+                colors[spdx_id] = palette[i % len(palette)]
+        return colors
 
     def _write_node(
         self,
@@ -76,7 +77,6 @@ class DotRenderer(Renderer):
             root = component[0]
             name = graph.packages[root].name
             path = str(out_dir / f"cycle{i}-{name}.dot")
-            cycle_ids = set(component)
             visited: set[str] = set()
             with open(path, "w", encoding="utf-8") as f:
                 f.write("digraph Dependencies {\n")
