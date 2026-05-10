@@ -15,4 +15,9 @@ class Renderer(ABC):
         metrics: dict[str, PackageMetrics],
         options: RenderOptions,
     ) -> None:
+        """Render the dependency graph to an output file.
+
+        The output path and rendering options are taken from options.
+        metrics may be empty if no MetricsProvider was used
+        """
         ...
