@@ -1,4 +1,6 @@
 .*
 *.dot
-*.spdx.json
+*.png
 *.svg
+__pycache__/
+out/

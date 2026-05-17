@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rpm2xkcd2347"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Visualize RPM package dependencies from an SPDX SBOM, inspired by xkcd 2347."
+dependencies = [
+    "python-dotenv>=1.2.2",
+    "requests>=2.32",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rpm2xkcd2347"]
+
+[project.scripts]
+rpm2xkcd2347 = "rpm2xkcd2347.cli:main"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
