@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 from dataclasses import dataclass
 
 from .model import DependencyGraph
@@ -10,6 +10,7 @@ class AnalysisResult:
     frequencies: dict[str, tuple[int, int]]  # spdx_id -> (dependants, dependencies)
     fas: list[tuple[str, str]]               # feedback arc set: edges to remove to break all cycles
     dag: DependencyGraph                     # graph with FAS edges removed (directed acyclic graph)
+    layers: dict[str, int]                   # spdx_id -> topological layer (0 = no dependencies)
 
 
 def analyze(graph: DependencyGraph) -> AnalysisResult:
@@ -24,7 +25,25 @@ def analyze(graph: DependencyGraph) -> AnalysisResult:
         for spdx_id, deps in graph.dependencies.items()
     }
     dag = DependencyGraph(packages=graph.packages, dependencies=dag_deps)
-    return AnalysisResult(cycles=cycles, frequencies=frequencies, fas=fas, dag=dag)
+    layers = _topological_layers(dag)
+    return AnalysisResult(cycles=cycles, frequencies=frequencies, fas=fas, dag=dag, layers=layers)
+
+
+def _topological_layers(dag: DependencyGraph) -> dict[str, int]:
+    rev = _reverse(dag.dependencies)
+    remaining_deps = {spdx_id: len(deps) for spdx_id, deps in dag.dependencies.items()}
+    layers: dict[str, int] = {spdx_id: 0 for spdx_id in dag.packages}
+    queue: deque[str] = deque(spdx_id for spdx_id, count in remaining_deps.items() if count == 0)
+
+    while queue:
+        node = queue.popleft()
+        for dependant in rev.get(node, []):
+            layers[dependant] = max(layers[dependant], layers[node] + 1)
+            remaining_deps[dependant] -= 1
+            if remaining_deps[dependant] == 0:
+                queue.append(dependant)
+
+    return layers
 
 
 def _reverse(dependencies: dict[str, list[str]]) -> dict[str, list[str]]:
