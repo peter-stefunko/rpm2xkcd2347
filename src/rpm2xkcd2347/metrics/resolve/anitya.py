@@ -1,6 +1,29 @@
 import re
-import requests
 import time
+from collections import defaultdict
+
+import requests
+
+from ...sbom.model import Package
+
+def resolve_repo_urls(packages: dict[str, Package]) -> dict[str, list[str]]:
+    """Resolve repo URLs for packages via Anitya, returning repo_url -> [spdx_id, ...]."""
+    src_to_ids: dict[str, list[str]] = defaultdict(list)
+    for spdx_id, pkg in packages.items():
+        if not pkg.purl:
+            continue
+        src = extract_src_name(pkg.purl)
+        if src:
+            src_to_ids[src].append(spdx_id)
+
+    repo_to_ids: dict[str, list[str]] = defaultdict(list)
+    for src_name, spdx_ids in src_to_ids.items():
+        url = lookup_repo_url(src_name)
+        if url:
+            repo_to_ids[url].extend(spdx_ids)
+        time.sleep(0.5)
+
+    return dict(repo_to_ids)
 
 
 def extract_src_name(purl: str) -> str | None:
@@ -50,12 +73,23 @@ def lookup_project(src_name: str) -> dict | None:
     )
 
 
-def lookup_github_repo(src_name: str) -> str | None:
-    """Return the GitHub owner/repo for a Fedora src RPM name via Anitya, or None."""
+def lookup_repo_url(src_name: str) -> str | None:
+    """Return the repo URL for a Fedora src RPM name via Anitya, or None.
+
+    Supports forges listed in _BACKEND_BASE_URLS. Returns None for unrecognised backends.
+    """
     project = lookup_project(src_name)
-    if project is None or project.get('backend') != 'GitHub':
+    if project is None:
         return None
-    return project.get('version_url')  # "owner/repo"
+    backend_urls = {
+        'GitHub': 'https://github.com',
+        'GitLab': 'https://gitlab.com',
+    }
+    base = backend_urls.get(project.get('backend', ''))
+    if not base:
+        return None
+    version_url = project.get('version_url')
+    return f'{base}/{version_url}' if version_url else None
 
 
 def _get(url: str, params: dict | None = None) -> dict | None:

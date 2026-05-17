@@ -2,8 +2,6 @@ import json
 import os
 import shutil
 import subprocess
-import time
-from collections import defaultdict
 from pathlib import Path
 
 from ..graph.model import DependencyGraph
@@ -24,7 +22,7 @@ class OssfCriticalityScoreGoProvider(MetricsProvider):
         if not token:
             raise RuntimeError('GITHUB_AUTH_TOKEN environment variable not set')
 
-        repo_to_ids = self._resolve_repo_urls(graph)
+        repo_to_ids = anitya.resolve_repo_urls(graph.packages)
 
         result: dict[str, PackageMetrics] = {}
         for repo_url, spdx_ids in repo_to_ids.items():
@@ -35,24 +33,6 @@ class OssfCriticalityScoreGoProvider(MetricsProvider):
                 result[spdx_id] = metrics
 
         return result
-
-    def _resolve_repo_urls(self, graph: DependencyGraph) -> dict[str, list[str]]:
-        src_to_ids: dict[str, list[str]] = defaultdict(list)
-        for spdx_id, pkg in graph.packages.items():
-            if not pkg.purl:
-                continue
-            src = anitya.extract_src_name(pkg.purl)
-            if src:
-                src_to_ids[src].append(spdx_id)
-
-        repo_to_ids: dict[str, list[str]] = defaultdict(list)
-        for src_name, spdx_ids in src_to_ids.items():
-            repo = anitya.lookup_github_repo(src_name)
-            if repo:
-                repo_to_ids[f'https://github.com/{repo}'].extend(spdx_ids)
-            time.sleep(0.5)
-
-        return repo_to_ids
 
     def _score_repo(self, binary: str, token: str, repo_url: str) -> PackageMetrics | None:
         try:
