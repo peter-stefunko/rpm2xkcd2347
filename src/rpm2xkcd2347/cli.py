@@ -78,7 +78,7 @@ def _print_metrics(graph: DependencyGraph, metrics: dict[str, PackageMetrics]) -
 
 
 def _build_provider(metrics_arg: str) -> MetricsProvider:
-    if metrics_arg == 'criticality-go':
+    if metrics_arg == 'ossf-criticality-go':
         return OssfCriticalityScoreGoProvider()
     return NullProvider()
 
@@ -117,13 +117,12 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--metrics",
-        choices=["none", "criticality-go"],
+        choices=["none", "ossf-criticality-go"],
         default="none",
         help=(
-            "metrics provider: 'criticality' resolves each package's upstream "
-            "GitHub repository via Anitya and computes the OpenSSF Criticality "
-            "Score from live GitHub API signals (requires GITHUB_AUTH_TOKEN); "
-            "'criticality-go' uses the criticality_score Go binary instead. "
+            "metrics provider: 'ossf-criticality-go' resolves each package's upstream "
+            "repository via Anitya and computes the OpenSSF Criticality Score using "
+            "the criticality_score Go binary (requires GITHUB_AUTH_TOKEN). "
             "Default: none."
         ),
     )

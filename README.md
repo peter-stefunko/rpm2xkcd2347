@@ -47,8 +47,8 @@ options:
                         do not color cycle participants in the output graph
   --print SECTION       print a section to stdout; can be repeated.
                         choices: dependencies, duplicates, frequencies, cycles, signals, metrics
-  --metrics {none,criticality-go}
-                        metrics provider: 'criticality-go' resolves each package's upstream
+  --metrics {none,ossf-criticality-go}
+                        metrics provider: 'ossf-criticality-go' resolves each package's upstream
                         GitHub repository via Anitya and computes the OpenSSF Criticality
                         Score using the criticality_score Go binary (requires GITHUB_AUTH_TOKEN).
                         Default: none.
@@ -67,7 +67,7 @@ All output files are written to `out/<sbom-stem>/` by default:
 
 ### Metrics: OpenSSF Criticality Score
 
-The `--metrics criticality-go` option scores each package using the [OpenSSF Criticality Score](https://github.com/ossf/criticality_score) project. It requires the `criticality_score` binary to be installed:
+The `--metrics ossf-criticality-go` option scores each package using the [OpenSSF Criticality Score](https://github.com/ossf/criticality_score) project. It requires the `criticality_score` binary to be installed:
 
 ```bash
 go install github.com/ossf/criticality_score/v2/cmd/criticality_score@latest
