@@ -6,6 +6,7 @@ import requests
 
 from ...sbom.model import Package
 
+
 def resolve_repo_urls(packages: dict[str, Package]) -> dict[str, list[str]]:
     """Resolve repo URLs for packages via Anitya, returning repo_url -> [spdx_id, ...]."""
     src_to_ids: dict[str, list[str]] = defaultdict(list)
