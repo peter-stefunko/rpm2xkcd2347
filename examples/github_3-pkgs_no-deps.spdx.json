@@ -2,7 +2,7 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "registry.access.redhat.com/ubi9 (GitHub packages only - no dependencies)",
+  "name": "registry.access.redhat.com/ubi9",
   "documentNamespace": "https://anchore.com/syft/image/registry.access.redhat.com/ubi9-da18917a-0c8a-42b0-becb-204281a86cc2",
   "creationInfo": {
     "licenseListVersion": "3.27",
