@@ -1,0 +1,202 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "registry.access.redhat.com/ubi9",
+  "documentNamespace": "https://anchore.com/syft/image/registry.access.redhat.com/ubi9-da18917a-0c8a-42b0-becb-204281a86cc2",
+  "creationInfo": {
+    "licenseListVersion": "3.27",
+    "creators": [
+      "Organization: Anchore, Inc",
+      "Tool: syft-[not provided]"
+    ],
+    "created": "2026-01-18T18:08:27Z"
+  },
+  "packages": [
+    {
+      "name": "ubi9",
+      "SPDXID": "SPDXRef-DocumentRoot-Image-registry.access.redhat.com-ubi9",
+      "versionInfo": "9.7",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "name": "yum",
+      "SPDXID": "SPDXRef-Package-rpm-yum-c49ceffef48e2a22",
+      "versionInfo": "4.14.0-31.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "c7eac57a82a5d6640d2b3bb3994bf31ab4595f1a"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/yum@4.14.0-31.el9?arch=noarch&distro=rhel-9.7&upstream=dnf-4.14.0-31.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "dnf",
+      "SPDXID": "SPDXRef-Package-rpm-dnf-1606e224456c587a",
+      "versionInfo": "4.14.0-31.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "8b97f5d308bd5ff10fedc96aaebb68f2e0782927"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/dnf@4.14.0-31.el9?arch=noarch&distro=rhel-9.7&upstream=dnf-4.14.0-31.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "subscription-manager",
+      "SPDXID": "SPDXRef-Package-rpm-subscription-manager-e5e82a0e3eeb4e15",
+      "versionInfo": "1.29.47.1-1.el9_7",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "c02c195d27fd09091bb6ad9a38b75b41128dc4b9"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "(GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.1-or-later)",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/subscription-manager@1.29.47.1-1.el9_7?arch=x86_64&distro=rhel-9.7&upstream=subscription-manager-1.29.47.1-1.el9_7.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "python3-dnf-plugins-core",
+      "SPDXID": "SPDXRef-Package-rpm-python3-dnf-plugins-core-bd41b188540182fb",
+      "versionInfo": "4.3.0-24.el9_7",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "2d78d0ea530d95972b8ae2916af066a1e62e5c1b"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/python3-dnf-plugins-core@4.3.0-24.el9_7?arch=noarch&distro=rhel-9.7&upstream=dnf-plugins-core-4.3.0-24.el9_7.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "python3-dnf",
+      "SPDXID": "SPDXRef-Package-rpm-python3-dnf-2dc993491f0d3f7c",
+      "versionInfo": "4.14.0-31.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "bd0f3dae6c3bb888c67ba9fdccd629f9bfe25852"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/python3-dnf@4.14.0-31.el9?arch=noarch&distro=rhel-9.7&upstream=dnf-4.14.0-31.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "python3-hawkey",
+      "SPDXID": "SPDXRef-Package-rpm-python3-hawkey-120a9f04b71eefa5",
+      "versionInfo": "0.69.0-16.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "d6d21aba7cc939d3a81839db428f130ebe4566fc"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-LGPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/python3-hawkey@0.69.0-16.el9?arch=x86_64&distro=rhel-9.7&upstream=libdnf-0.69.0-16.el9.src.rpm"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-dnf-1606e224456c587a",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-yum-c49ceffef48e2a22",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-python3-dnf-2dc993491f0d3f7c",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-dnf-1606e224456c587a",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-python3-dnf-2dc993491f0d3f7c",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-subscription-manager-e5e82a0e3eeb4e15",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-python3-dnf-plugins-core-bd41b188540182fb",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-subscription-manager-e5e82a0e3eeb4e15",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-python3-dnf-2dc993491f0d3f7c",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-python3-dnf-plugins-core-bd41b188540182fb",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-python3-hawkey-120a9f04b71eefa5",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-python3-dnf-2dc993491f0d3f7c",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-python3-hawkey-120a9f04b71eefa5",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-python3-dnf-plugins-core-bd41b188540182fb",
+      "relationshipType": "DEPENDENCY_OF"
+    }
+  ]
+}
