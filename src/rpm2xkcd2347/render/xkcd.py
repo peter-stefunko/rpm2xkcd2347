@@ -1,4 +1,6 @@
+import random
 from collections import defaultdict, deque
+from collections.abc import Callable
 from dataclasses import dataclass
 
 from ..graph.analysis import AnalysisResult
@@ -11,18 +13,21 @@ from .model import RenderOptions
 # some presentable demo output. All of this will get heavily refactored and is
 # not curently worth analyzing at all.
 
-_BLOCK_W = 120
-_BLOCK_H = 22
+_BLOCK_W = 70
+_BLOCK_H = _BLOCK_W * 1.4
 _H_GAP = 3          # horizontal gap between adjacent blocks in one layer
-_V_GAP = 2          # vertical gap between layers
+_V_GAP = 1          # vertical gap between layers
 _TOWER_GAP = 50     # horizontal gap between disconnected dependency towers
 _PADDING = 24       # canvas padding
 
 _FONT_SIZE = 10
 _FONT_FAMILY = "monospace"
-_BLOCK_FILL = "#ebebeb"
-_BLOCK_STROKE = "#aaa"
+_BLOCK_FILL = "#e1e1e1"
+_BLOCK_STROKE = "#000"
+_BLOCK_STROKE_W = 2
 _TEXT_COLOR = "#333"
+
+_WOBBLE_SCALE = 2
 
 
 @dataclass
@@ -71,7 +76,7 @@ class XkcdRenderer(Renderer):
             f' viewBox="0 0 {svg_w:.1f} {svg_h:.1f}">',
         ]
 
-        x_cursor = float(_PADDING)
+        x_cursor = _PADDING
         for i, tower in enumerate(towers):
             self._emit_tower(parts, tower, graph, metrics, x_cursor, svg_h, i)
             x_cursor += tower.width + _TOWER_GAP
@@ -123,20 +128,42 @@ class XkcdRenderer(Renderer):
                 if dep in component:
                     dependants[dep].append(sid)
 
+        excl_parent: dict[str, str | None] = {}
+        for sid in component:
+            deps_of = [d for d in dependants.get(sid, []) if d in component]
+            excl_parent[sid] = deps_of[0] if len(deps_of) == 1 else None
+
+        natural_w: dict[str, float] = {}
+        for layer in range(max_layer + 1):
+            for sid in layer_pkgs.get(layer, []):
+                excl_deps = sorted(
+                    (d for d in analysis.dag.dependencies.get(sid, [])
+                     if d in component and excl_parent.get(d) == sid),
+                    key=lambda d: graph.packages[d].name,
+                )
+                if not excl_deps:
+                    natural_w[sid] = float(_BLOCK_W)
+                else:
+                    w = sum(natural_w[d] for d in excl_deps)
+                    w += sum(
+                        _sibling_gap(excl_deps[i], excl_deps[i + 1], analysis, component)
+                        for i in range(len(excl_deps) - 1)
+                    )
+                    natural_w[sid] = max(w, float(_BLOCK_W))
+
         positions: dict[str, tuple[float, float]] = {}
+
+        def gap_fn(a: str, b: str) -> float:
+            return _sibling_gap(a, b, analysis, component)
 
         top_pkgs = layer_pkgs[max_layer]
         x = 0.0
         for i, sid in enumerate(top_pkgs):
-            positions[sid] = (x, x + _BLOCK_W)
-            gap = _H_GAP if i < len(top_pkgs) - 1 else 0.0
+            positions[sid] = (x, x + natural_w[sid])
             if i < len(top_pkgs) - 1:
-                next_sid = top_pkgs[i + 1]
-                deps_a = set(analysis.dag.dependencies.get(sid, [])) & component
-                deps_b = set(analysis.dag.dependencies.get(next_sid, [])) & component
-                gap = _H_GAP if deps_a & deps_b else _TOWER_GAP
-            x += _BLOCK_W + gap
-
+                x += natural_w[sid] + gap_fn(sid, top_pkgs[i + 1])
+            else:
+                x += natural_w[sid]
         tower_width = x
 
         for layer in range(max_layer - 1, -1, -1):
@@ -145,6 +172,7 @@ class XkcdRenderer(Renderer):
                 continue
 
             ideal: dict[str, tuple[float, float]] = {}
+            orphans: list[str] = []
             for sid in pkgs:
                 placed = [d for d in dependants.get(sid, []) if d in positions]
                 if placed:
@@ -152,14 +180,38 @@ class XkcdRenderer(Renderer):
                     xr = max(positions[d][1] for d in placed)
                 else:
                     xl, xr = 0.0, float(_BLOCK_W)
-                ideal[sid] = (xl, max(xr, xl + _BLOCK_W))
+                    orphans.append(sid)
+                ideal[sid] = (xl, max(xr, xl + natural_w.get(sid, float(_BLOCK_W))))
+
+            non_orphan_set = set(pkgs) - set(orphans)
+            for orphan in orphans:
+                orphan_deps = set(analysis.dag.dependencies.get(orphan, [])) & component
+                for candidate in sorted(non_orphan_set, key=lambda s: graph.packages[s].name):
+                    if orphan_deps & (set(analysis.dag.dependencies.get(candidate, [])) & component):
+                        ideal[orphan] = ideal[candidate]
+                        break
 
             sorted_pkgs = sorted(pkgs, key=lambda s: (ideal[s][0], graph.packages[s].name))
-            resolved = _resolve_overlaps(sorted_pkgs, ideal)
+            resolved = _resolve_overlaps_nw(sorted_pkgs, ideal, natural_w, gap_fn)
             positions.update(resolved)
-
             for xl, xr in resolved.values():
                 tower_width = max(tower_width, xr)
+
+        top_ideal: dict[str, tuple[float, float]] = {}
+        for sid in top_pkgs:
+            dep_placed = [
+                d for d in analysis.dag.dependencies.get(sid, [])
+                if d in positions and d in component
+            ]
+            if dep_placed:
+                xl = min(positions[d][0] for d in dep_placed)
+                xr = max(positions[d][1] for d in dep_placed)
+                top_ideal[sid] = (xl, max(xr, xl + natural_w.get(sid, float(_BLOCK_W))))
+            else:
+                top_ideal[sid] = positions[sid]
+        sorted_top = sorted(top_pkgs, key=lambda s: (top_ideal[s][0], graph.packages[s].name))
+        positions.update(_resolve_overlaps_nw(sorted_top, top_ideal, natural_w, gap_fn))
+        tower_width = max(xr for _, xr in positions.values())
 
         height = (max_layer + 1) * _BLOCK_H + max_layer * _V_GAP
         blocks = [
@@ -215,9 +267,10 @@ class XkcdRenderer(Renderer):
         w = block.width
         name = _xml_escape(graph.packages[block.spdx_id].name)
         fill = self._block_fill(pkg_metrics)
+        path = _wobbly_rect(x, y, w, _BLOCK_H, block.spdx_id)
         parts.append(
-            f'      <rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{_BLOCK_H}"'
-            f' fill="{fill}" stroke="{_BLOCK_STROKE}" stroke-width="1" rx="2"/>'
+            f'      <path d="{path}"'
+            f' fill="{fill}" stroke="{_BLOCK_STROKE}" stroke-width="{_BLOCK_STROKE_W}"/>'
         )
         parts.append(
             f'      <text x="{x + w / 2:.1f}" y="{y + _BLOCK_H / 2:.1f}"'
@@ -230,9 +283,22 @@ class XkcdRenderer(Renderer):
         return _BLOCK_FILL
 
 
-def _resolve_overlaps(
+def _sibling_gap(
+    a: str,
+    b: str,
+    analysis: AnalysisResult,
+    component: set[str],
+) -> float:
+    deps_a = set(analysis.dag.dependencies.get(a, [])) & component
+    deps_b = set(analysis.dag.dependencies.get(b, [])) & component
+    return float(_H_GAP) if deps_a & deps_b else float(_TOWER_GAP)
+
+
+def _resolve_overlaps_nw(
     pkgs: list[str],
     ideal: dict[str, tuple[float, float]],
+    natural_w: dict[str, float],
+    gap_fn: "Callable[[str, str], float]",
 ) -> dict[str, tuple[float, float]]:
     result: dict[str, tuple[float, float]] = {}
     i = 0
@@ -250,33 +316,62 @@ def _resolve_overlaps(
                 group.append(pkgs[j])
                 j += 1
                 grew = True
-
             if j < len(pkgs):
-                n = len(group)
-                per_w = max(
-                    (combined_right - combined_left - (n - 1) * _H_GAP) / n,
-                    float(_BLOCK_W),
-                )
-                resolved_end = combined_left + n * per_w + (n - 1) * _H_GAP
+                total_w = sum(natural_w.get(p, _BLOCK_W) for p in group)
+                total_gaps = sum(gap_fn(group[k], group[k + 1]) for k in range(len(group) - 1))
+                resolved_end = combined_left + total_w + total_gaps
                 if ideal[pkgs[j]][0] < resolved_end:
                     combined_right = max(combined_right, ideal[pkgs[j]][1])
                     group.append(pkgs[j])
                     j += 1
                     grew = True
 
-        n = len(group)
-        per_w = max(
-            (combined_right - combined_left - (n - 1) * _H_GAP) / n,
-            float(_BLOCK_W),
-        )
-        x = combined_left
-        for pkg in group:
-            result[pkg] = (x, x + per_w)
-            x += per_w + _H_GAP
+        if len(group) == 1:
+            result[group[0]] = (combined_left, combined_right)
+        else:
+            x = combined_left
+            for k, pkg in enumerate(group):
+                w = natural_w.get(pkg, _BLOCK_W)
+                result[pkg] = (x, x + w)
+                if k < len(group) - 1:
+                    x += w + gap_fn(pkg, group[k + 1])
+                else:
+                    x += w
 
         i = j
-
     return result
+
+
+def _wobbly_rect(x: float, y: float, w: float, h: float, spdx_id: str) -> str:
+    rng = random.Random(spdx_id)
+
+    def jitter(scale: float) -> float:
+        return (rng.random() * 2.0 - 1.0) * scale
+
+    c = _WOBBLE_SCALE
+    s = _WOBBLE_SCALE * 1.2
+
+    tl = (x + jitter(c),     y + jitter(c))
+    tr = (x + w + jitter(c), y + jitter(c))
+    br = (x + w + jitter(c), y + h + jitter(c))
+    bl = (x + jitter(c),     y + h + jitter(c))
+
+    def ctrl(p1: tuple[float, float], p2: tuple[float, float]) -> tuple[float, float]:
+        mx, my = (p1[0] + p2[0]) / 2.0, (p1[1] + p2[1]) / 2.0
+        dx, dy = p2[0] - p1[0], p2[1] - p1[1]
+        length = (dx * dx + dy * dy) ** 0.5
+        px, py = (-dy / length, dx / length) if length else (0.0, 0.0)
+        bow = jitter(s)
+        return (mx + px * bow, my + py * bow)
+
+    ct, cr, cb, cl = ctrl(tl, tr), ctrl(tr, br), ctrl(br, bl), ctrl(bl, tl)
+    return (
+        f'M {tl[0]:.1f},{tl[1]:.1f} '
+        f'Q {ct[0]:.1f},{ct[1]:.1f} {tr[0]:.1f},{tr[1]:.1f} '
+        f'Q {cr[0]:.1f},{cr[1]:.1f} {br[0]:.1f},{br[1]:.1f} '
+        f'Q {cb[0]:.1f},{cb[1]:.1f} {bl[0]:.1f},{bl[1]:.1f} '
+        f'Q {cl[0]:.1f},{cl[1]:.1f} {tl[0]:.1f},{tl[1]:.1f} Z'
+    )
 
 
 def _xml_escape(text: str) -> str:
