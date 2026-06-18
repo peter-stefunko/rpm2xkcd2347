@@ -13,6 +13,7 @@ from .metrics.ossf_criticality_score_go import OssfCriticalityScoreGoProvider
 from .metrics.model import PackageMetrics
 from .metrics.null import NullProvider
 from .render.dot import DotRenderer
+from .render.xkcd import XkcdRenderer
 from .render.model import RenderOptions
 from .sbom.detect import detect as detect_parser
 from .sbom.model import ParsedSbom
@@ -156,9 +157,13 @@ def main() -> None:
     sbom_stem = Path(args.sbom).stem
     out_dir = Path("out") / sbom_stem
     out_dir.mkdir(parents=True, exist_ok=True)
-    output_path = args.output or str(out_dir / f"{sbom_stem}.dot")
-    options = RenderOptions(
-        output_path=output_path,
+
+    dot_path = args.output or str(out_dir / f"{sbom_stem}.dot")
+    DotRenderer().render(graph, analysis, metrics, RenderOptions(
+        output_path=dot_path,
         highlight_cycles=not args.no_highlight_cycles,
-    )
-    DotRenderer().render(graph, analysis, metrics, options)
+    ))
+
+    XkcdRenderer().render(graph, analysis, metrics, RenderOptions(
+        output_path=str(out_dir / f"{sbom_stem}.svg"),
+    ))
