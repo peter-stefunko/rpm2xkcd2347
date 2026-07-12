@@ -1,0 +1,1032 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "synthetic-17pkg",
+  "documentNamespace": "https://example.com/synthetic-17pkg",
+  "creationInfo": {
+    "licenseListVersion": "3.27",
+    "creators": [
+      "Organization: Anchore, Inc",
+      "Tool: syft-[not provided]"
+    ],
+    "created": "2026-01-18T18:08:27Z"
+  },
+  "packages": [
+    {
+      "name": "bash",
+      "SPDXID": "SPDXRef-Package-rpm-bash-0515b52ebbb5144c",
+      "versionInfo": "5.1.8-9.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "9295a01e788345a66a371467a1dd0c085d921f52"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv3-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:bash:5.1.8-9.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:bash:bash:5.1.8-9.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/bash@5.1.8-9.el9?arch=x86_64&distro=rhel-9.7&upstream=bash-5.1.8-9.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "chardet",
+      "SPDXID": "SPDXRef-Package-python-chardet-bccd724f046d05c3",
+      "versionInfo": "4.0.0",
+      "supplier": "Person: Mark Pilgrim (mark@diveintomark.org)",
+      "originator": "Person: Mark Pilgrim (mark@diveintomark.org)",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "sourceInfo": "acquired package info from installed python package manifest file: /usr/lib/python3.9/site-packages/chardet-4.0.0.dist-info/METADATA, /usr/lib/python3.9/site-packages/chardet-4.0.0.dist-info/top_level.txt",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-LGPL",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrim_project:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrim_project:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrimproject:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrimproject:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python-chardet:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python-chardet:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python_chardet:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python_chardet:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrim_project:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrim:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrim:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrimproject:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_project:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_project:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:markproject:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:markproject:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:chardet:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:chardet:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python-chardet:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python_chardet:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_pilgrim:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark_project:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark:python-chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark:python_chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:markproject:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:chardet:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:python:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:mark:chardet:4.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/chardet@4.0.0"
+        }
+      ]
+    },
+    {
+      "name": "coreutils-single",
+      "SPDXID": "SPDXRef-Package-rpm-coreutils-single-8ef168befafd7b27",
+      "versionInfo": "8.32-39.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "ef443b1715d1043e782e8f3d0fe774b721123a9f"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv3-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:coreutils-single:coreutils-single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:coreutils-single:coreutils_single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:coreutils_single:coreutils-single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:coreutils_single:coreutils_single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:coreutils:coreutils-single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:coreutils:coreutils_single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:coreutils-single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:coreutils_single:8.32-39.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/coreutils-single@8.32-39.el9?arch=x86_64&distro=rhel-9.7&upstream=coreutils-8.32-39.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "curl-minimal",
+      "SPDXID": "SPDXRef-Package-rpm-curl-minimal-211bc8dbb2d0cae8",
+      "versionInfo": "7.76.1-34.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "5b6a872d5e3a94b3298c6be5b63fbd9b91e318e9"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:curl-minimal:curl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:curl-minimal:curl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:curl_minimal:curl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:curl_minimal:curl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:curl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:curl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:curl:curl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:curl:curl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9?arch=x86_64&distro=rhel-9.7&upstream=curl-7.76.1-34.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "dnf-data",
+      "SPDXID": "SPDXRef-Package-rpm-dnf-data-a5500c10ad6164e5",
+      "versionInfo": "4.14.0-31.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "045a8ebedee301c6c1c29fb59380dd63ba6730cf"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:dnf-data:dnf-data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:dnf-data:dnf_data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:dnf_data:dnf-data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:dnf_data:dnf_data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:dnf-data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:dnf_data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:dnf:dnf-data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:dnf:dnf_data:4.14.0-31.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/dnf-data@4.14.0-31.el9?arch=noarch&distro=rhel-9.7&upstream=dnf-4.14.0-31.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "findutils",
+      "SPDXID": "SPDXRef-Package-rpm-findutils-763f697b60309dba",
+      "versionInfo": "1:4.8.0-7.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "7041e5fd7df2bc1423e95b757c5526cb50a62f97"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv3-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:findutils:findutils:1\\:4.8.0-7.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:findutils:1\\:4.8.0-7.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/findutils@4.8.0-7.el9?arch=x86_64&distro=rhel-9.7&epoch=1&upstream=findutils-4.8.0-7.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "gawk",
+      "SPDXID": "SPDXRef-Package-rpm-gawk-9dcf052ea12fdad7",
+      "versionInfo": "5.1.0-6.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "bcd95096d07fdd94f81071639972d4f9bcb200f4"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv3--and-GPLv2--and-LGPLv2--and-BSD",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:gawk:5.1.0-6.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:gawk:gawk:5.1.0-6.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/gawk@5.1.0-6.el9?arch=x86_64&distro=rhel-9.7&upstream=gawk-5.1.0-6.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "gdbm-libs",
+      "SPDXID": "SPDXRef-Package-rpm-gdbm-libs-fcfdc07fd546a72e",
+      "versionInfo": "1:1.23-1.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "428ea47793c9b7f86101faf732b66fe582f2c511"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv3-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:gdbm-libs:gdbm-libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:gdbm-libs:gdbm_libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:gdbm_libs:gdbm-libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:gdbm_libs:gdbm_libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:gdbm-libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:gdbm_libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:gdbm:gdbm-libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:gdbm:gdbm_libs:1\\:1.23-1.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/gdbm-libs@1.23-1.el9?arch=x86_64&distro=rhel-9.7&epoch=1&upstream=gdbm-1.23-1.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "glib2",
+      "SPDXID": "SPDXRef-Package-rpm-glib2-7ee51647563bc9b1",
+      "versionInfo": "2.68.4-18.el9_7",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "811fbf8c3fd4b702ac929f3d2520abb1174f16c5"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-LGPLv2-",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:glib2:2.68.4-18.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glib2:glib2:2.68.4-18.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7?arch=x86_64&distro=rhel-9.7&upstream=glib2-2.68.4-18.el9_7.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "glibc",
+      "SPDXID": "SPDXRef-Package-rpm-glibc-6065213b0177c343",
+      "versionInfo": "2.34-231.el9_7.2",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "a2067a2a855abd7ff1b75f9ff07bc032636607b6"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-LGPLv2--and-LGPLv2--with-exceptions-and-GPLv2--and-GPLv2--with-exceptions-and-BSD-and-Inner-Net-and-ISC-and-Public-Domain-and-GFDL",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:glibc:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glibc:glibc:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2?arch=x86_64&distro=rhel-9.7&upstream=glibc-2.34-231.el9_7.2.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "glibc-common",
+      "SPDXID": "SPDXRef-Package-rpm-glibc-common-daddd35181720871",
+      "versionInfo": "2.34-231.el9_7.2",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "197401f12271033203c2d362b550182fe2b09f62"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-LGPLv2--and-LGPLv2--with-exceptions-and-GPLv2--and-GPLv2--with-exceptions-and-BSD-and-Inner-Net-and-ISC-and-Public-Domain-and-GFDL",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glibc-common:glibc-common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glibc-common:glibc_common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glibc_common:glibc-common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glibc_common:glibc_common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:glibc-common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:glibc_common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glibc:glibc-common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:glibc:glibc_common:2.34-231.el9_7.2:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2?arch=x86_64&distro=rhel-9.7&upstream=glibc-2.34-231.el9_7.2.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "libcap",
+      "SPDXID": "SPDXRef-Package-rpm-libcap-0e9353c95034199a",
+      "versionInfo": "2.48-10.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "6865933a6be8496212b13d3707a34de7c0ccfa0d"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-BSD-or-GPLv2",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libcap:libcap:2.48-10.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:libcap:2.48-10.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/libcap@2.48-10.el9?arch=x86_64&distro=rhel-9.7&upstream=libcap-2.48-10.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "libcurl-minimal",
+      "SPDXID": "SPDXRef-Package-rpm-libcurl-minimal-dbb58be7b5652cc7",
+      "versionInfo": "7.76.1-34.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "11aad134967c98d7fc4e03e133e29da97c347b62"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libcurl-minimal:libcurl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libcurl-minimal:libcurl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libcurl_minimal:libcurl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libcurl_minimal:libcurl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libcurl:libcurl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libcurl:libcurl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:libcurl-minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:libcurl_minimal:7.76.1-34.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/libcurl-minimal@7.76.1-34.el9?arch=x86_64&distro=rhel-9.7&upstream=curl-7.76.1-34.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "libgcc",
+      "SPDXID": "SPDXRef-Package-rpm-libgcc-06e2c48d975ea1da",
+      "versionInfo": "11.5.0-11.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "0a9a7d8db214fd4f2cd5c8ff4554bce455d12fb6"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-GPLv3--and-GPLv3--with-exceptions-and-GPLv2--with-exceptions-and-LGPLv2--and-BSD",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libgcc:libgcc:11.5.0-11.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:libgcc:11.5.0-11.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/libgcc@11.5.0-11.el9?arch=x86_64&distro=rhel-9.7&upstream=gcc-11.5.0-11.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "libselinux",
+      "SPDXID": "SPDXRef-Package-rpm-libselinux-ccc2461d41d72dde",
+      "versionInfo": "3.6-3.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "5db7ce010d4bce25de15f6f3a44fe9ecfccc1fda"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-Public-Domain",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:libselinux:libselinux:3.6-3.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:libselinux:3.6-3.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/libselinux@3.6-3.el9?arch=x86_64&distro=rhel-9.7&upstream=libselinux-3.6-3.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "ncurses-libs",
+      "SPDXID": "SPDXRef-Package-rpm-ncurses-libs-9dc1b34cdde2c695",
+      "versionInfo": "6.2-12.20210508.el9",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "ea37721cb3c1ede4d06e36ffc757da13ef77a839"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:ncurses-libs:ncurses-libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:ncurses-libs:ncurses_libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:ncurses_libs:ncurses-libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:ncurses_libs:ncurses_libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:ncurses:ncurses-libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:ncurses:ncurses_libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:ncurses-libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:ncurses_libs:6.2-12.20210508.el9:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/ncurses-libs@6.2-12.20210508.el9?arch=x86_64&distro=rhel-9.7&upstream=ncurses-6.2-12.20210508.el9.src.rpm"
+        }
+      ]
+    },
+    {
+      "name": "openssl-libs",
+      "SPDXID": "SPDXRef-Package-rpm-openssl-libs-9620df42e45abf0c",
+      "versionInfo": "1:3.5.1-4.el9_7",
+      "supplier": "Organization: Red Hat, Inc.",
+      "originator": "Organization: Red Hat, Inc.",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "95cfef643a2f455b5fb3d50cbd227122d9aba42d"
+      },
+      "sourceInfo": "acquired package info from RPM DB: /var/lib/rpm/rpmdb.sqlite",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:openssl-libs:openssl-libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:openssl-libs:openssl_libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:openssl_libs:openssl-libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:openssl_libs:openssl_libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:openssl:openssl-libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:openssl:openssl_libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:openssl-libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:redhat:openssl_libs:1\\:3.5.1-4.el9_7:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:rpm/redhat/openssl-libs@3.5.1-4.el9_7?arch=x86_64&distro=rhel-9.7&epoch=1&upstream=openssl-3.5.1-4.el9_7.src.rpm"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-coreutils-single-8ef168befafd7b27",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-findutils-763f697b60309dba",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-coreutils-single-8ef168befafd7b27",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-gawk-9dcf052ea12fdad7",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-bash-0515b52ebbb5144c",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-coreutils-single-8ef168befafd7b27",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-ncurses-libs-9dc1b34cdde2c695",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-coreutils-single-8ef168befafd7b27",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-glibc-common-daddd35181720871",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-bash-0515b52ebbb5144c",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-glibc-common-daddd35181720871",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-ncurses-libs-9dc1b34cdde2c695",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-glibc-6065213b0177c343",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-glibc-common-daddd35181720871",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-gdbm-libs-fcfdc07fd546a72e",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-dnf-data-a5500c10ad6164e5",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-glib2-7ee51647563bc9b1",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-gdbm-libs-fcfdc07fd546a72e",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-libselinux-ccc2461d41d72dde",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-glib2-7ee51647563bc9b1",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-libgcc-06e2c48d975ea1da",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-libselinux-ccc2461d41d72dde",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-libgcc-06e2c48d975ea1da",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-libcap-0e9353c95034199a",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-glibc-6065213b0177c343",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-libgcc-06e2c48d975ea1da",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-libcurl-minimal-dbb58be7b5652cc7",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-curl-minimal-211bc8dbb2d0cae8",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-rpm-openssl-libs-9620df42e45abf0c",
+      "relatedSpdxElement": "SPDXRef-Package-rpm-libcurl-minimal-dbb58be7b5652cc7",
+      "relationshipType": "DEPENDENCY_OF"
+    }
+  ]
+}
